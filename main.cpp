@@ -1,36 +1,43 @@
 #include <iostream>
 #include <vector>
 
-// *Note that size and capacity are passed by reference*
-void PushBack(int* numbers, int number, int& size, int& capacity)
+void PushBack(int*& numbers, int number, int& size, int& capacity)
 {
 	if (size + 1 >= capacity)
 	{
-		// Perform reallocation!
+		// Perform reallocation
 	}
-	// Add number to the back of numbers.
+	// Add number to the back of numbers
+}
+
+void PopBack(int& size)
+{
+	// Implementation is up to you. Modify function parameters as you see fit!
+	// I recommend you simply decrement size (since size is independent of capacity).
 }
 
 int main()
 {
-	// 1. resize(5) called -- allocates memory for 5 ints
-	int* numbers = new int[5];
+	int size = 0;
+	int capacity = 3;
+	int* numbers = new int[capacity];
+	for (int i = 0; i < capacity; i++)
+	{
+		numbers[i] = i;
+		size++;
+	}
 
-	// 2. resize(10) called -- reallocation occurs (10 > 5)
-	// 2a -- alloacte new memory for 10 ints
-	// 2b -- copy previous 5 integers to new memory
-	// 2c -- delete old memory
-	// 2d -- point to new memory
+	// Should print "1, 2, 3, 420"
+	PushBack(numbers, 420, size, capacity);
+	for (int i = 0; i < size; i++)
+		std::cout << numbers[i] << std::endl;
 
-	int* newNumbers = new int[10];	// 2a
+	// Should print "1, 2, 3"
+	PopBack(size);
+	for (int i = 0; i < size; i++)
+		std::cout << numbers[i] << std::endl;
 
-	for (int i = 0; i < 5; i++)
-		newNumbers[i] = numbers[i];	// 2b
-
-	delete[] numbers;				// 2c
-	numbers = newNumbers;			// 2d
-
+	// Tip: use the debugger to inspect local variables and memory!
+	// Tip: if you don't have any code, you don't have any bugs. ;)
 	return 0;
 }
-
-// Pro tip: if you delete all your code, you won't have any bugs!
