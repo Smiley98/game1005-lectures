@@ -1,48 +1,33 @@
 #include <iostream>
+#include <unordered_set>
 
-class Player1
+struct Cell
 {
-public:
-	int health;
+	int row;
+	int col;
 
-	void SetHealth(int heath)
+	bool operator==(Cell cell) const
 	{
-		this->health = heath;
+		return row == cell.row && col == cell.col;
 	}
 };
 
-struct Player2
+struct CellHash
 {
-public:
-	int health;
+	size_t operator()(Cell cell) const
+	{
+		int rowHash = std::hash<int>()(cell.row);
+		int colHash = std::hash<int>()(cell.col) << 1;
+		return rowHash ^ colHash;
+	}
 };
-
-void SetHealth(Player2 player, int health)
-{
-	player.health = health;
-}
-
-bool CheckHealth(int health, int requiredHealth)
-{
-	return health > requiredHealth;
-}
 
 int main()
 {
-	int warriorHealths[5];
-	warriorHealths[0] = 100;
-	warriorHealths[1] = 69;
-	warriorHealths[2] = 420;
-	warriorHealths[3] = 42;
-	warriorHealths[4] = -9000;
-
-	int requiredHealth = 50;
-	for (int i = 0; i < 5; i++)
-	{
-		if (CheckHealth(warriorHealths[i], requiredHealth))
-			std::cout << "Warrior " << i << " ready for battle!" << std::endl;
-		else
-			std::cout << "Warrior " << i << " must rest!" << std::endl;
-	}
+	std::unordered_set<Cell, CellHash> cells;
+	cells.insert({ 0, 0 });
+	cells.insert({ 1, 1 });
+	bool foundYes = cells.find({ 1, 1 }) != cells.end();
+	bool foundNo = cells.find({ 1, 0 }) != cells.end();
 	return 0;
 }
