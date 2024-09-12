@@ -1,19 +1,36 @@
 #include <iostream>
-void PrintNumbers(int numbers[])
+#include <array>
+#include <string>
+
+struct Person
 {
-	for (int i = 0; i < 3; i++)
-		std::cout << numbers[i] << std::endl;
+	std::string name;
+	int age;
+};
+
+void CreatePeople(std::array<Person, 3> people)
+{
+	for (int i = 0; i < people.size(); i++)
+	{
+		// TODO -- assign each person a name and age
+	}
 }
 
-void PrintNumbers(int* numbers)
+void PrintPeople(std::array<Person, 3> people)
 {
-	for (int i = 0; i < 3; i++)
-		std::cout << numbers[i] << std::endl;
+	for (int i = 0; i < people.size(); i++)
+	{
+		std::cout << people[i].name << std::endl;
+		std::cout << people[i].age << std::endl;
+	}
 }
+
+// TODO -- create this function with a native array. Does it produce the same result?
 
 int main()
 {
-	int numbers[]{ 1, 2, 3 };
-	PrintNumbers(numbers);
+	std::array<Person, 3> people;
+	CreatePeople(people);
+	PrintPeople(people);
 	return 0;
 }
