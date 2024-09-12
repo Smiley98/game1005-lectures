@@ -1,32 +1,5 @@
 #include <iostream>
 
-class Player1
-{
-public:
-	int health;
-
-	void SetHealth(int heath)
-	{
-		this->health = heath;
-	}
-};
-
-struct Player2
-{
-public:
-	int health;
-};
-
-void SetHealth(Player2 player, int health)
-{
-	player.health = health;
-}
-
-bool CheckHealth(int health, int requiredHealth)
-{
-	return health > requiredHealth;
-}
-
 int main()
 {
 	int warriorHealths[5];
@@ -39,7 +12,7 @@ int main()
 	int requiredHealth = 50;
 	for (int i = 0; i < 5; i++)
 	{
-		if (CheckHealth(warriorHealths[i], requiredHealth))
+		if (warriorHealths[i] >= requiredHealth)
 			std::cout << "Warrior " << i << " ready for battle!" << std::endl;
 		else
 			std::cout << "Warrior " << i << " must rest!" << std::endl;
