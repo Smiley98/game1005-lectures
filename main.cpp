@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 int main()
 {
@@ -9,13 +10,24 @@ int main()
 	warriorHealths[3] = 42;
 	warriorHealths[4] = -9000;
 
+	std::string warriorNames[]
+	{
+		"Jay",
+		"Matthew",
+		"JP",
+		"Ruthie the Fallen",
+		"Eevee"
+	};
+
 	int requiredHealth = 50;
 	for (int i = 0; i < 5; i++)
 	{
+		int warriorNumber = i + 1;
+		std::string warriorName = warriorNames[i];
 		if (warriorHealths[i] >= requiredHealth)
-			std::cout << "Warrior " << i << " ready for battle!" << std::endl;
+			std::cout << warriorName << " ready for battle!" << std::endl;
 		else
-			std::cout << "Warrior " << i << " must rest!" << std::endl;
+			std::cout << warriorName << " must rest!" << std::endl;
 	}
 	return 0;
 }
