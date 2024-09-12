@@ -8,11 +8,13 @@ struct Person
 	int age;
 };
 
-void CreatePeople(std::array<Person, 3> people)
+void CreatePeople(std::array<Person, 3>& people)
 {
 	for (int i = 0; i < people.size(); i++)
 	{
 		// TODO -- assign each person a name and age
+		people[i].age = 26;
+		people[i].name = "Connor";
 	}
 }
 
@@ -24,8 +26,6 @@ void PrintPeople(std::array<Person, 3> people)
 		std::cout << people[i].age << std::endl;
 	}
 }
-
-// TODO -- create this function with a native array. Does it produce the same result?
 
 int main()
 {
