@@ -6,10 +6,10 @@ struct Warrior
 	int health;
 };
 
-void SetHealth(Warrior warrior, int health)
+// Removing the & makes warrior a copy, causing the change to not apply outside of the function!!!
+void SetHealth(Warrior& warrior, int health)
 {
-	// TODO -- modify the warrior's health
-	// TODO add a & beside warrior, see how that changes the program!
+	warrior.health = health;
 }
 
 int main()
