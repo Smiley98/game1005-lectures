@@ -1,18 +1,25 @@
 #include <iostream>
 #include <vector>
+#include <limits>
+
+void HurtMyComputer()
+{
+	int* numbers = new int[INT_MAX];
+}
+
+int* PotentiallyHurtMyComputer()
+{
+	int* numbers = new int[INT_MAX];
+	return numbers;
+}
 
 int main()
 {
-	std::vector<int> numbers;
+	// "Leak" 8 gigabytes
+	HurtMyComputer();
 
-	for (int i = 0; i < 3000000; i++)
-		numbers.push_back(i);
-
-	int front = numbers.front();
-	int back = numbers.back();
-
-	for (int i = 0; i < 3000000; i++)
-		numbers.pop_back();
-
+	// Store the address of our 8 gigabyte allocation so we can (ideally) delete it later!
+	int* memory = PotentiallyHurtMyComputer();
+	delete[] memory;
 	return 0;
 }
